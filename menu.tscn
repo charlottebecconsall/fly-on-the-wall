@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://chvmmcw2fo5iy"]
+
+[ext_resource type="Script" path="res://PlayGameButton.gd" id="1_yeevl"]
+
+[node name="Menu" type="Node2D"]
+
+[node name="PlayGameButton" type="Button" parent="."]
+offset_left = 401.0
+offset_top = 190.0
+offset_right = 801.0
+offset_bottom = 415.0
+text = "Play game"
+script = ExtResource("1_yeevl")
+
+[connection signal="pressed" from="PlayGameButton" to="PlayGameButton" method="_on_pressed"]

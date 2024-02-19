@@ -1,0 +1,18 @@
+[gd_scene load_steps=3 format=3 uid="uid://cya3sw1jvseqp"]
+
+[ext_resource type="Texture2D" uid="uid://da8bj5v8u5ied" path="res://fly.png" id="1_bgh7x"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_ff4nw"]
+radius = 14.0357
+
+[node name="Fly" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+shape = SubResource("CircleShape2D_ff4nw")
+
+[node name="Fly" type="Sprite2D" parent="Area2D"]
+position = Vector2(-6, -6)
+scale = Vector2(0.0703428, 0.066875)
+texture = ExtResource("1_bgh7x")
