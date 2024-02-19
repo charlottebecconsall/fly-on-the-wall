@@ -1,10 +1,17 @@
-[gd_scene load_steps=4 format=3 uid="uid://ccpl5tag6q20v"]
+[gd_scene load_steps=6 format=3 uid="uid://ccpl5tag6q20v"]
 
 [ext_resource type="Texture2D" uid="uid://bjp1yfcou8t38" path="res://assets/art/bullet.png" id="1_2q1f8"]
 [ext_resource type="Script" path="res://scenes/bullet.gd" id="1_tkp8g"]
+[ext_resource type="AudioStream" uid="uid://dni2anexhbina" path="res://assets/505628__highpixel__basketballbounce.wav" id="3_cn81g"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_x2chw"]
 radius = 25.02
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_ii7ot"]
+random_pitch = 1.2
+streams_count = 1
+stream_0/stream = ExtResource("3_cn81g")
+stream_0/weight = 1.0
 
 [node name="Bullet" type="Node2D"]
 script = ExtResource("1_tkp8g")
@@ -22,5 +29,8 @@ target_position = Vector2(200, 0)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
+
+[node name="BounceSound" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_ii7ot")
 
 [connection signal="area_entered" from="Area2D" to="." method="_on_area_2d_area_entered"]

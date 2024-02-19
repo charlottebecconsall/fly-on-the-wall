@@ -1,0 +1,6 @@
+[gd_resource type="Theme" load_steps=2 format=3 uid="uid://cpmkvhhm5dw0m"]
+
+[ext_resource type="FontFile" uid="uid://ck102ooi5gnli" path="res://assets/ProtestRiot-Regular.ttf" id="1_kddfa"]
+
+[resource]
+default_font = ExtResource("1_kddfa")

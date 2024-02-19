@@ -11,10 +11,11 @@ func load_flies(num_flies):
 		
 		fly.position = $SpawnZone.position + $SpawnZone.size * Vector2(randf(), randf())
 		fly.rotation_degrees = randi() % 360
+		fly.died.connect($AudioStreamPlayer.play)
 		
 
 func load_ricoshooter_info(num_ricoshooters):
-	$RicoshooterNum.text = str(num_ricoshooters)
+	%RicoshooterNum.text = str(num_ricoshooters)
 	
 	
 func remove_ricoshooter():
@@ -24,7 +25,7 @@ func remove_ricoshooter():
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
-	# Prepares game by loading in all the essentials
+	MusicAutoplay.play_file("res://assets/Main Game Music.mp3")
 	load_flies(num_flies)
 	load_ricoshooter_info(num_ricoshooters)
 
@@ -38,4 +39,21 @@ func _unhandled_input(event: InputEvent) -> void:
 		num_ricoshooters -= 1
 		load_ricoshooter_info(num_ricoshooters)
 
+
+func game_end():
+	$EndScreen.show()
+	var flies_got = num_flies - get_tree().get_node_count_in_group("Flies")
+	var end_text = "You got %d flies!" % flies_got
+	if flies_got == num_flies:
+		end_text += "\nAmazing work!"
+	if flies_got == 0:
+		end_text += "\nMight need some practice..."
+	$EndScreen/VBoxContainer/Label.text = end_text
+
+func _on_try_again_pressed() -> void:
+	get_tree().reload_current_scene()
 	
+
+
+func _on_menu_pressed() -> void:
+	get_tree().change_scene_to_file("res://scenes/menu.tscn")

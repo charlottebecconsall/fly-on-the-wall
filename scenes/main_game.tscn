@@ -1,8 +1,28 @@
-[gd_scene load_steps=4 format=3 uid="uid://c82vnjvdrx6x4"]
+[gd_scene load_steps=12 format=3 uid="uid://c82vnjvdrx6x4"]
 
 [ext_resource type="Script" path="res://scenes/main_game.gd" id="1_b0obm"]
 [ext_resource type="Texture2D" uid="uid://dcph6fxd21w4n" path="res://assets/art/Wallpaper.png" id="2_4h7wb"]
 [ext_resource type="Script" path="res://scenes/gun.gd" id="3_x7cka"]
+[ext_resource type="AudioStream" uid="uid://dajfqfwan7r35" path="res://assets/633837__aesterial-arts__balloon-pop-2.wav" id="4_1w18m"]
+[ext_resource type="AudioStream" uid="uid://cv284lyxe0wqq" path="res://assets/363698__jofae__retro-gun-shot.mp3" id="4_2528s"]
+[ext_resource type="Theme" uid="uid://cpmkvhhm5dw0m" path="res://assets/theme.tres" id="5_a0wlj"]
+
+[sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_815hx"]
+random_pitch = 2.0
+streams_count = 1
+stream_0/stream = ExtResource("4_1w18m")
+stream_0/weight = 1.0
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_tlq8d"]
+normal = Vector2(0, 1)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_cq1si"]
+normal = Vector2(1, 0)
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_4laq2"]
+
+[sub_resource type="WorldBoundaryShape2D" id="WorldBoundaryShape2D_mendu"]
+normal = Vector2(-1, 0)
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_b0obm")
@@ -29,21 +49,6 @@ grow_vertical = 2
 texture = ExtResource("2_4h7wb")
 expand_mode = 1
 
-[node name="Label" type="Label" parent="."]
-offset_left = 962.0
-offset_top = 10.0
-offset_right = 1141.0
-offset_bottom = 33.0
-text = "Ricoshooters Available:"
-
-[node name="RicoshooterNum" type="Label" parent="."]
-offset_left = 964.0
-offset_top = 39.0
-offset_right = 1143.0
-offset_bottom = 62.0
-text = "0"
-horizontal_alignment = 1
-
 [node name="Gun" type="Node2D" parent="."]
 position = Vector2(576, 648)
 rotation = -1.5708
@@ -62,12 +67,100 @@ collide_with_bodies = false
 [node name="PreviewLine" type="Line2D" parent="Gun"]
 default_color = Color(0.866667, 0, 0, 0.6)
 
-[node name="ShootButton" type="Button" parent="."]
-offset_left = 795.0
-offset_top = 564.0
-offset_right = 903.0
-offset_bottom = 637.0
-focus_mode = 0
-text = "FIRE"
+[node name="Gunshot" type="AudioStreamPlayer" parent="Gun"]
+stream = ExtResource("4_2528s")
 
+[node name="ShootButton" type="Button" parent="."]
+offset_left = 757.0
+offset_top = 562.0
+offset_right = 961.0
+offset_bottom = 629.0
+focus_mode = 0
+theme_override_font_sizes/font_size = 24
+text = "Click me to FIRE"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = SubResource("AudioStreamRandomizer_815hx")
+max_polyphony = 10
+
+[node name="EndScreen" type="PanelContainer" parent="."]
+visible = false
+z_index = 20
+offset_left = 332.0
+offset_top = 193.0
+offset_right = 814.0
+offset_bottom = 357.0
+theme = ExtResource("5_a0wlj")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen"]
+layout_mode = 2
+
+[node name="Label" type="Label" parent="EndScreen/VBoxContainer"]
+custom_minimum_size = Vector2(400, 0)
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_font_sizes/font_size = 48
+text = "You got X Flies
+"
+horizontal_alignment = 1
+vertical_alignment = 1
+autowrap_mode = 2
+
+[node name="TryAgain" type="Button" parent="EndScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Play again?"
+
+[node name="Menu" type="Button" parent="EndScreen/VBoxContainer"]
+layout_mode = 2
+size_flags_horizontal = 4
+text = "Menu"
+
+[node name="OutOfBounds" type="Area2D" parent="."]
+collision_mask = 0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(0, -100)
+shape = SubResource("WorldBoundaryShape2D_tlq8d")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(-100, 0)
+shape = SubResource("WorldBoundaryShape2D_cq1si")
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(1152, 748)
+shape = SubResource("WorldBoundaryShape2D_4laq2")
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="OutOfBounds"]
+position = Vector2(1252, 648)
+shape = SubResource("WorldBoundaryShape2D_mendu")
+
+[node name="Panel" type="Panel" parent="."]
+offset_left = 928.0
+offset_top = 6.0
+offset_right = 1140.0
+offset_bottom = 72.0
+theme = ExtResource("5_a0wlj")
+
+[node name="Label" type="Label" parent="Panel"]
+layout_mode = 0
+offset_left = 27.0
+offset_top = 6.0
+offset_right = 206.0
+offset_bottom = 29.0
+text = "Ricoshooters Available:"
+
+[node name="RicoshooterNum" type="Label" parent="Panel"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 22.0
+offset_top = 36.0
+offset_right = 201.0
+offset_bottom = 59.0
+text = "0"
+horizontal_alignment = 1
+
+[connection signal="bullet_left" from="Gun" to="." method="game_end"]
 [connection signal="pressed" from="ShootButton" to="Gun" method="shoot"]
+[connection signal="pressed" from="EndScreen/VBoxContainer/TryAgain" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="EndScreen/VBoxContainer/Menu" to="." method="_on_menu_pressed"]

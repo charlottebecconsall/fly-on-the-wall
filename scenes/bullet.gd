@@ -12,6 +12,7 @@ func _physics_process(delta: float) -> void:
 	
 	ray_cast.force_raycast_update()
 	if ray_cast.is_colliding() :
+		$BounceSound.play()
 		global_position = ray_cast.get_collision_point()
 		var new_dir = global_transform.x.reflect(ray_cast.get_collision_normal().orthogonal())
 		global_rotation = new_dir.angle()
@@ -23,3 +24,6 @@ func _physics_process(delta: float) -> void:
 func _on_area_2d_area_entered(area: Area2D) -> void:
 	if area.owner.is_in_group("Flies"):
 		area.owner.queue_free()
+		area.owner.died.emit()
+	if area.name == "OutOfBounds":
+		queue_free()

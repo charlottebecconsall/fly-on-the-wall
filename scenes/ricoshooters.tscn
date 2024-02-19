@@ -1,7 +1,8 @@
-[gd_scene load_steps=4 format=3 uid="uid://dv0xtq00agnww"]
+[gd_scene load_steps=5 format=3 uid="uid://dv0xtq00agnww"]
 
 [ext_resource type="Script" path="res://scenes/ricoshooters.gd" id="1_1pmkd"]
 [ext_resource type="Texture2D" uid="uid://dieeq7d6wxc6k" path="res://assets/art/bullet_richoshooter.png" id="2_3qcip"]
+[ext_resource type="AudioStream" uid="uid://yjxba73p3pnw" path="res://assets/209490__peridactyloptrix__kung-fu-punch-3.wav" id="3_cu2fc"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mn1kr"]
 radius = 48.0
@@ -18,5 +19,8 @@ collision_layer = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
 shape = SubResource("CircleShape2D_mn1kr")
+
+[node name="PlaceSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_cu2fc")
 
 [connection signal="input_event" from="Area2D" to="." method="_on_area_2d_input_event"]

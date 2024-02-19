@@ -28,6 +28,10 @@ window/stretch/mode="canvas_items"
 Ricoshooters=""
 Flies=""
 
+[gui]
+
+theme/custom="res://assets/theme.tres"
+
 [input]
 
 place_ricoshooter={

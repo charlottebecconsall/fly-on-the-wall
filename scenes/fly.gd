@@ -2,6 +2,8 @@ extends Node2D
 
 @onready var wing_buzz_timer: Timer = $WingBuzzTimer
 
+signal died
+
 func _ready() -> void:
 	wing_buzz_timer.start(randf_range(0.5, 3.0))
 

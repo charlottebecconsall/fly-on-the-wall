@@ -3,6 +3,10 @@ extends Node2D
 @onready var preview_ray: RayCast2D = $PreviewRay
 @onready var preview_line: Line2D = $PreviewLine
 
+signal bullet_left
+
+var can_shoot = true
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -37,7 +41,12 @@ func update_preview_line():
 
 
 func shoot():
-	var bullet = preload("res://scenes/bullet.tscn").instantiate()
+	$Gunshot.play()
+	if not can_shoot:
+		return
+	var bullet = preload("res://scenes/bullet.tscn").instantiate() as Node2D
 	bullet.global_position = global_position
 	bullet.global_rotation = global_rotation
+	bullet.tree_exited.connect(bullet_left.emit)
 	add_sibling(bullet)
+	can_shoot = false
