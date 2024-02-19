@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://c82vnjvdrx6x4"]
+[gd_scene load_steps=4 format=3 uid="uid://c82vnjvdrx6x4"]
 
 [ext_resource type="Script" path="res://main_game.gd" id="1_b0obm"]
 [ext_resource type="Texture2D" uid="uid://dcph6fxd21w4n" path="res://assets/art/Wallpaper.png" id="2_4h7wb"]
+[ext_resource type="Script" path="res://gun.gd" id="3_x7cka"]
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_b0obm")
@@ -34,3 +35,21 @@ offset_right = 1143.0
 offset_bottom = 62.0
 text = "0"
 horizontal_alignment = 1
+
+[node name="Gun" type="Node2D" parent="."]
+position = Vector2(576, 648)
+rotation = -1.5708
+script = ExtResource("3_x7cka")
+
+[node name="Polygon2D" type="Polygon2D" parent="Gun"]
+polygon = PackedVector2Array(-17, -16, -15, 22, 107, 19, 104, -26)
+
+[node name="PreviewRay" type="RayCast2D" parent="Gun"]
+enabled = false
+target_position = Vector2(1000, 0)
+collision_mask = 2
+collide_with_areas = true
+collide_with_bodies = false
+
+[node name="PreviewLine" type="Line2D" parent="Gun"]
+default_color = Color(0.866667, 0, 0, 0.6)

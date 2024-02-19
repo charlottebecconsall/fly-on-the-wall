@@ -22,6 +22,5 @@ hframes = 2
 [node name="WingBuzzTimer" type="Timer" parent="."]
 one_shot = true
 
-[connection signal="timeout" from="WingBuzzTimer" to="." method="buzz_wings"]
-
 [connection signal="area_entered" from="Area2D" to="." method="_on_fly_entered"]
+[connection signal="timeout" from="WingBuzzTimer" to="." method="buzz_wings"]
