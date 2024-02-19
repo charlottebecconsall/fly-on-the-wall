@@ -1,6 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://cya3sw1jvseqp"]
+[gd_scene load_steps=3 format=3 uid="uid://dlvv84dw41106"]
 
-[ext_resource type="Texture2D" uid="uid://da8bj5v8u5ied" path="res://fly.png" id="1_bgh7x"]
+[ext_resource type="Texture2D" uid="uid://5v6lw7mfyaji" path="res://assets/art/fly.png" id="1_lkqlr"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_ff4nw"]
 radius = 14.0357
@@ -13,6 +13,5 @@ radius = 14.0357
 shape = SubResource("CircleShape2D_ff4nw")
 
 [node name="Fly" type="Sprite2D" parent="Area2D"]
-position = Vector2(-6, -6)
-scale = Vector2(0.0703428, 0.066875)
-texture = ExtResource("1_bgh7x")
+position = Vector2(-4.76837e-07, 1)
+texture = ExtResource("1_lkqlr")
