@@ -11,13 +11,13 @@ config_version=5
 [application]
 
 config/name="Fly-on-the-wall"
-run/main_scene="res://menu.tscn"
+run/main_scene="res://scenes/menu.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.png"
 
 [autoload]
 
-MusicAutoplay="*res://music_autoplay.tscn"
+MusicAutoplay="*res://scenes/music_autoplay.tscn"
 
 [display]
 

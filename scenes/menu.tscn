@@ -1,7 +1,7 @@
 [gd_scene load_steps=6 format=3 uid="uid://dm7g7dd8mmrq4"]
 
 [ext_resource type="Texture2D" uid="uid://dcph6fxd21w4n" path="res://assets/art/Wallpaper.png" id="1_7lore"]
-[ext_resource type="Script" path="res://PlayGameButton.gd" id="1_yeevl"]
+[ext_resource type="Script" path="res://scenes/PlayGameButton.gd" id="1_yeevl"]
 [ext_resource type="Texture2D" uid="uid://b38a1qaqc7mgh" path="res://assets/ui/mouse_left.png" id="2_07gyl"]
 [ext_resource type="Texture2D" uid="uid://dx1a6435bo1ir" path="res://assets/ui/mouse_right.png" id="3_q1hvm"]
 [ext_resource type="Texture2D" uid="uid://bwmc0yupbkpsu" path="res://assets/ui/keyboard_arrows_horizontal.png" id="4_xkj70"]
