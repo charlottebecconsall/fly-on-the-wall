@@ -19,3 +19,18 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("2_4h7wb")
 expand_mode = 1
+
+[node name="Label" type="Label" parent="."]
+offset_left = 962.0
+offset_top = 10.0
+offset_right = 1141.0
+offset_bottom = 33.0
+text = "Ricoshooters Available:"
+
+[node name="RicoshooterNum" type="Label" parent="."]
+offset_left = 964.0
+offset_top = 39.0
+offset_right = 1143.0
+offset_bottom = 62.0
+text = "0"
+horizontal_alignment = 1
