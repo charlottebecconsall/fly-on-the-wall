@@ -1,5 +1,7 @@
 extends Node2D
 
+signal entry_refused
+
 @onready var wing_buzz_timer: Timer = $WingBuzzTimer
 
 func _ready() -> void:
@@ -14,3 +16,15 @@ func buzz_wings():
 		tween.tween_callback(fly_sprite.set_frame.bind(0))
 		tween.tween_interval(0.02)
 	tween.tween_callback(wing_buzz_timer.start.bind(randf_range(0.5, 3.0)))
+
+
+# Called every frame. 'delta' is the elapsed time since the previous frame.
+func _process(delta: float) -> void:
+	pass
+
+
+func _on_fly_entered(area: Area2D) -> void:
+	if area.is_in_group("Ricoshooters"):
+		if !area.owner.is_queued_for_deletion():
+			area.owner.ricoshooter_removed.emit()
+			area.owner.queue_free()

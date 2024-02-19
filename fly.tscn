@@ -23,3 +23,5 @@ hframes = 2
 one_shot = true
 
 [connection signal="timeout" from="WingBuzzTimer" to="." method="buzz_wings"]
+
+[connection signal="area_entered" from="Area2D" to="." method="_on_fly_entered"]
