@@ -1,7 +1,5 @@
 extends Node2D
 
-signal entry_refused
-
 @onready var wing_buzz_timer: Timer = $WingBuzzTimer
 
 func _ready() -> void:

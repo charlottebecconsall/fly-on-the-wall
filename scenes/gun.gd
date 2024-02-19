@@ -15,8 +15,6 @@ func _process(delta: float) -> void:
 	if Input.is_action_pressed("aim_right"):
 		rotate(delta * 0.5)
 	update_preview_line()
-	if Input.is_action_just_pressed("ui_accept"):
-		shoot()
 
 func update_preview_line():
 	preview_ray.transform = Transform2D.IDENTITY

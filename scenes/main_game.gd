@@ -8,8 +8,8 @@ func load_flies(num_flies):
 		var fly_scene = preload("res://scenes/fly.tscn")
 		var fly = fly_scene.instantiate() as Node2D
 		add_child(fly)
-		fly.entry_refused.emit(reject_ricoshooter)
-		fly.position = Vector2(randi() % (get_window().content_scale_size.x-100), randi() % (get_window().content_scale_size.y-100))
+		
+		fly.position = $SpawnZone.position + $SpawnZone.size * Vector2(randf(), randf())
 		fly.rotation_degrees = randi() % 360
 		
 
@@ -21,22 +21,15 @@ func remove_ricoshooter():
 	num_ricoshooters += 1
 	load_ricoshooter_info(num_ricoshooters)
 	
-	
-func reject_ricoshooter():
-	pass
-
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	# Prepares game by loading in all the essentials
 	load_flies(num_flies)
 	load_ricoshooter_info(num_ricoshooters)
-	
-	
 
-# Called every frame. 'delta' is the elapsed time since the previous frame.
-func _process(delta: float) -> void:
-	if Input.is_action_just_pressed("place_ricoshooter") and num_ricoshooters > 0:
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("place_ricoshooter"):
 		var ricoshooter_scene = preload("res://scenes/ricoshooters.tscn")
 		var ricoshooter = ricoshooter_scene.instantiate()
 		add_child(ricoshooter)
@@ -44,4 +37,5 @@ func _process(delta: float) -> void:
 		ricoshooter.ricoshooter_removed.connect(remove_ricoshooter)
 		num_ricoshooters -= 1
 		load_ricoshooter_info(num_ricoshooters)
+
 	
