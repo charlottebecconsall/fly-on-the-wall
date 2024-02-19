@@ -1,8 +1,21 @@
-[gd_scene load_steps=2 format=3 uid="uid://c82vnjvdrx6x4"]
+[gd_scene load_steps=3 format=3 uid="uid://5rfrvaddl4vi"]
 
 [ext_resource type="Script" path="res://main_game.gd" id="1_b0obm"]
+[ext_resource type="Texture2D" uid="uid://dcph6fxd21w4n" path="res://assets/art/Wallpaper.png" id="2_4h7wb"]
 
 [node name="MainGame" type="Node2D"]
 script = ExtResource("1_b0obm")
 
 [node name="Node2D" type="Node2D" parent="."]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+layer = -128
+
+[node name="TextureRect" type="TextureRect" parent="CanvasLayer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_4h7wb")
+expand_mode = 1
