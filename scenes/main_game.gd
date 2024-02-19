@@ -5,7 +5,7 @@ var num_ricoshooters = 3
 
 func load_flies(num_flies):
 	for i in num_flies:
-		var fly_scene = preload("res://fly.tscn")
+		var fly_scene = preload("res://scenes/fly.tscn")
 		var fly = fly_scene.instantiate() as Node2D
 		add_child(fly)
 		fly.entry_refused.emit(reject_ricoshooter)
@@ -37,7 +37,7 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_just_pressed("place_ricoshooter") and num_ricoshooters > 0:
-		var ricoshooter_scene = preload("res://ricoshooters.tscn")
+		var ricoshooter_scene = preload("res://scenes/ricoshooters.tscn")
 		var ricoshooter = ricoshooter_scene.instantiate()
 		add_child(ricoshooter)
 		ricoshooter.position = get_global_mouse_position()

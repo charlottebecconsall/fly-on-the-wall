@@ -1,3 +1,21 @@
-[gd_scene format=3 uid="uid://dl3jdujuwu4ji"]
+[gd_scene load_steps=2 format=3 uid="uid://dl3jdujuwu4ji"]
 
-[node name="End" type="Node2D"]
+[ext_resource type="Texture2D" uid="uid://dcph6fxd21w4n" path="res://assets/art/Wallpaper.png" id="1_lus5u"]
+
+[node name="End" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="TextureRect" type="TextureRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_lus5u")
+expand_mode = 1
