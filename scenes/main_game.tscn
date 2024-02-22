@@ -6,7 +6,7 @@
 [ext_resource type="AudioStream" uid="uid://dajfqfwan7r35" path="res://assets/633837__aesterial-arts__balloon-pop-2.wav" id="4_1w18m"]
 [ext_resource type="AudioStream" uid="uid://cv284lyxe0wqq" path="res://assets/363698__jofae__retro-gun-shot.mp3" id="4_2528s"]
 [ext_resource type="Texture2D" uid="uid://b6wekluai2n03" path="res://assets/art/barrel.png" id="4_eaut0"]
-[ext_resource type="Theme" uid="uid://cpmkvhhm5dw0m" path="res://assets/theme.tres" id="5_a0wlj"]
+[ext_resource type="Theme" path="res://assets/theme.tres" id="5_a0wlj"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_815hx"]
 random_pitch = 2.0
@@ -95,10 +95,15 @@ offset_right = 814.0
 offset_bottom = 357.0
 theme = ExtResource("5_a0wlj")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen"]
+[node name="MarginContainer" type="MarginContainer" parent="EndScreen"]
+layout_mode = 2
+theme_override_constants/margin_top = 24
+theme_override_constants/margin_bottom = 24
+
+[node name="VBoxContainer" type="VBoxContainer" parent="EndScreen/MarginContainer"]
 layout_mode = 2
 
-[node name="Label" type="Label" parent="EndScreen/VBoxContainer"]
+[node name="Label" type="Label" parent="EndScreen/MarginContainer/VBoxContainer"]
 custom_minimum_size = Vector2(400, 0)
 layout_mode = 2
 size_flags_vertical = 3
@@ -109,12 +114,12 @@ horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
 
-[node name="TryAgain" type="Button" parent="EndScreen/VBoxContainer"]
+[node name="TryAgain" type="Button" parent="EndScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Play again?"
 
-[node name="Menu" type="Button" parent="EndScreen/VBoxContainer"]
+[node name="Menu" type="Button" parent="EndScreen/MarginContainer/VBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 4
 text = "Menu"
@@ -165,5 +170,5 @@ horizontal_alignment = 1
 
 [connection signal="bullet_left" from="Gun" to="." method="game_end"]
 [connection signal="pressed" from="ShootButton" to="Gun" method="shoot"]
-[connection signal="pressed" from="EndScreen/VBoxContainer/TryAgain" to="." method="_on_try_again_pressed"]
-[connection signal="pressed" from="EndScreen/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
+[connection signal="pressed" from="EndScreen/MarginContainer/VBoxContainer/TryAgain" to="." method="_on_try_again_pressed"]
+[connection signal="pressed" from="EndScreen/MarginContainer/VBoxContainer/Menu" to="." method="_on_menu_pressed"]
