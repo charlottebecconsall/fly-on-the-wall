@@ -6,6 +6,7 @@ extends Node2D
 signal bullet_left
 
 var can_shoot = true
+var gun_rotation_speed = 0.005
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
@@ -15,9 +16,13 @@ func _ready() -> void:
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta: float) -> void:
 	if Input.is_action_pressed("aim_left"):
-		rotate(delta * -0.5)
+		rotate(delta * -gun_rotation_speed)
+		gun_rotation_speed += 0.005
 	if Input.is_action_pressed("aim_right"):
-		rotate(delta * 0.5)
+		rotate(delta * gun_rotation_speed)
+		gun_rotation_speed += 0.005
+	if Input.is_action_just_released("aim_left") or Input.is_action_just_released("aim_right"):
+		gun_rotation_speed = 0.005
 	update_preview_line()
 
 func update_preview_line():
