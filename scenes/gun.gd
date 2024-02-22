@@ -41,9 +41,9 @@ func update_preview_line():
 
 
 func shoot():
-	$Gunshot.play()
 	if not can_shoot:
 		return
+	$Gunshot.play()
 	var bullet = preload("res://scenes/bullet.tscn").instantiate() as Node2D
 	bullet.global_position = global_position
 	bullet.global_rotation = global_rotation

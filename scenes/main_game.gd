@@ -49,7 +49,7 @@ func game_end():
 		end_text += "\nAmazing work!"
 	if flies_got == 0:
 		end_text += "\nMight need some practice..."
-	$EndScreen/VBoxContainer/Label.text = end_text
+	%EndScreenLabel.text = end_text
 
 func _on_try_again_pressed() -> void:
 	get_tree().reload_current_scene()
