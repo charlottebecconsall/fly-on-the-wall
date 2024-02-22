@@ -1,9 +1,10 @@
-[gd_scene load_steps=7 format=3 uid="uid://dm7g7dd8mmrq4"]
+[gd_scene load_steps=8 format=3 uid="uid://dm7g7dd8mmrq4"]
 
 [ext_resource type="Script" path="res://scenes/menu.gd" id="1_1llk1"]
 [ext_resource type="Texture2D" uid="uid://dcph6fxd21w4n" path="res://assets/art/Wallpaper.png" id="1_7lore"]
 [ext_resource type="Script" path="res://scenes/PlayGameButton.gd" id="1_yeevl"]
 [ext_resource type="Texture2D" uid="uid://b38a1qaqc7mgh" path="res://assets/ui/mouse_left.png" id="2_07gyl"]
+[ext_resource type="Texture2D" uid="uid://cwf6ulqpi6h1q" path="res://assets/art/fly on the wall words.png" id="3_ffvki"]
 [ext_resource type="Texture2D" uid="uid://dx1a6435bo1ir" path="res://assets/ui/mouse_right.png" id="3_q1hvm"]
 [ext_resource type="Texture2D" uid="uid://bwmc0yupbkpsu" path="res://assets/ui/keyboard_arrows_horizontal.png" id="4_xkj70"]
 
@@ -26,6 +27,10 @@ grow_vertical = 2
 texture = ExtResource("1_7lore")
 expand_mode = 1
 
+[node name="FlyOnTheWallWords" type="Sprite2D" parent="TextureRect"]
+position = Vector2(629, 301)
+texture = ExtResource("3_ffvki")
+
 [node name="PlayGameButton" type="Button" parent="."]
 layout_mode = 1
 anchors_preset = 8
@@ -33,10 +38,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -124.0
-offset_top = -70.0
-offset_right = 125.0
-offset_bottom = 70.0
+offset_left = 288.0
+offset_top = -48.0
+offset_right = 537.0
+offset_bottom = 92.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_font_sizes/font_size = 48

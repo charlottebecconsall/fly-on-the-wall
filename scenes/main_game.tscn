@@ -1,10 +1,11 @@
-[gd_scene load_steps=12 format=3 uid="uid://c82vnjvdrx6x4"]
+[gd_scene load_steps=13 format=3 uid="uid://c82vnjvdrx6x4"]
 
 [ext_resource type="Script" path="res://scenes/main_game.gd" id="1_b0obm"]
 [ext_resource type="Texture2D" uid="uid://dcph6fxd21w4n" path="res://assets/art/Wallpaper.png" id="2_4h7wb"]
 [ext_resource type="Script" path="res://scenes/gun.gd" id="3_x7cka"]
 [ext_resource type="AudioStream" uid="uid://dajfqfwan7r35" path="res://assets/633837__aesterial-arts__balloon-pop-2.wav" id="4_1w18m"]
 [ext_resource type="AudioStream" uid="uid://cv284lyxe0wqq" path="res://assets/363698__jofae__retro-gun-shot.mp3" id="4_2528s"]
+[ext_resource type="Texture2D" uid="uid://b6wekluai2n03" path="res://assets/art/barrel.png" id="4_eaut0"]
 [ext_resource type="Theme" uid="uid://cpmkvhhm5dw0m" path="res://assets/theme.tres" id="5_a0wlj"]
 
 [sub_resource type="AudioStreamRandomizer" id="AudioStreamRandomizer_815hx"]
@@ -28,9 +29,9 @@ normal = Vector2(-1, 0)
 script = ExtResource("1_b0obm")
 
 [node name="SpawnZone" type="ReferenceRect" parent="."]
-offset_left = 174.0
-offset_top = 78.0
-offset_right = 1008.0
+offset_left = 107.0
+offset_top = 100.0
+offset_right = 983.0
 offset_bottom = 443.0
 mouse_filter = 2
 border_width = 5.0
@@ -50,12 +51,17 @@ texture = ExtResource("2_4h7wb")
 expand_mode = 1
 
 [node name="Gun" type="Node2D" parent="."]
-position = Vector2(576, 648)
+position = Vector2(573, 707)
 rotation = -1.5708
 script = ExtResource("3_x7cka")
 
-[node name="Polygon2D" type="Polygon2D" parent="Gun"]
-polygon = PackedVector2Array(-17, -16, -15, 22, 107, 19, 104, -26)
+[node name="PreviewLine" type="Line2D" parent="Gun"]
+default_color = Color(0.866667, 0, 0, 0.6)
+
+[node name="Barrel" type="Sprite2D" parent="Gun"]
+position = Vector2(36, 2.00012)
+scale = Vector2(1.56581, 0.643639)
+texture = ExtResource("4_eaut0")
 
 [node name="PreviewRay" type="RayCast2D" parent="Gun"]
 enabled = false
@@ -63,9 +69,6 @@ target_position = Vector2(1000, 0)
 collision_mask = 2
 collide_with_areas = true
 collide_with_bodies = false
-
-[node name="PreviewLine" type="Line2D" parent="Gun"]
-default_color = Color(0.866667, 0, 0, 0.6)
 
 [node name="Gunshot" type="AudioStreamPlayer" parent="Gun"]
 stream = ExtResource("4_2528s")

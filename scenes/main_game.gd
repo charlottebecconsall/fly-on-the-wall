@@ -31,13 +31,14 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("place_ricoshooter"):
-		var ricoshooter_scene = preload("res://scenes/ricoshooters.tscn")
-		var ricoshooter = ricoshooter_scene.instantiate()
-		add_child(ricoshooter)
-		ricoshooter.position = get_global_mouse_position()
-		ricoshooter.ricoshooter_removed.connect(remove_ricoshooter)
-		num_ricoshooters -= 1
-		load_ricoshooter_info(num_ricoshooters)
+		if num_ricoshooters > 0:
+			var ricoshooter_scene = preload("res://scenes/ricoshooters.tscn")
+			var ricoshooter = ricoshooter_scene.instantiate()
+			add_child(ricoshooter)
+			ricoshooter.position = get_global_mouse_position()
+			ricoshooter.ricoshooter_removed.connect(remove_ricoshooter)
+			num_ricoshooters -= 1
+			load_ricoshooter_info(num_ricoshooters)
 
 
 func game_end():
