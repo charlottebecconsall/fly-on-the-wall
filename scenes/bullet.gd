@@ -12,6 +12,7 @@ func _physics_process(delta: float) -> void:
 	global_rotation = rotation + get_angle_to(bullet_points[target_index])
 	global_position = position.move_toward(bullet_points[target_index], speed*delta)
 	if global_position == bullet_points[target_index]:
+		$BounceSound.play()
 		target_index += 1	
 	
 
