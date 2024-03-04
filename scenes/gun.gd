@@ -60,5 +60,5 @@ func shoot():
 	bullet.global_position = global_position
 	bullet.global_rotation = global_rotation
 	bullet.tree_exited.connect(bullet_left.emit)
-	bullet.bullet_points = bullet_points
+	bullet.bullet_points = bullet_points.duplicate()
 	can_shoot = false
