@@ -19,7 +19,9 @@ func buzz_wings():
 
 
 func _on_fly_entered(area: Area2D) -> void:
-	if area.is_in_group("Ricoshooters"):
-		if !area.owner.is_queued_for_deletion():
-			area.owner.ricoshooter_removed.emit()
-			area.owner.queue_free()
+	pass
+	# Commenting this out for now while I figure out the preview ricoshooter
+	#if area.is_in_group("Ricoshooters"):
+		#if !area.owner.is_queued_for_deletion():
+			#area.owner.ricoshooter_removed.emit()
+			#area.owner.queue_free()

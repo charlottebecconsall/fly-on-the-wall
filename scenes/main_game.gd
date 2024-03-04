@@ -2,6 +2,7 @@ extends Node2D
 
 var num_flies = 10
 var num_ricoshooters = 3
+var preview_ricoshooter
 
 func load_flies(num_flies):
 	for i in num_flies:
@@ -22,21 +23,29 @@ func remove_ricoshooter():
 	num_ricoshooters += 1
 	load_ricoshooter_info(num_ricoshooters)
 	
+	
+func create_ricoshooter():
+	var ricoshooter_scene = preload("res://scenes/ricoshooters.tscn")
+	var ricoshooter = ricoshooter_scene.instantiate()
+	add_child(ricoshooter)
+	ricoshooter.position = get_global_mouse_position()
+	ricoshooter.ricoshooter_removed.connect(remove_ricoshooter)
+	return ricoshooter
+	
 
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	MusicAutoplay.play_file("res://assets/Main Game Music.mp3")
 	load_flies(num_flies)
 	load_ricoshooter_info(num_ricoshooters)
+	preview_ricoshooter = create_ricoshooter()
+	preview_ricoshooter.preview = true
+	
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("place_ricoshooter"):
 		if num_ricoshooters > 0:
-			var ricoshooter_scene = preload("res://scenes/ricoshooters.tscn")
-			var ricoshooter = ricoshooter_scene.instantiate()
-			add_child(ricoshooter)
-			ricoshooter.position = get_global_mouse_position()
-			ricoshooter.ricoshooter_removed.connect(remove_ricoshooter)
+			create_ricoshooter()
 			num_ricoshooters -= 1
 			load_ricoshooter_info(num_ricoshooters)
 
@@ -58,3 +67,14 @@ func _on_try_again_pressed() -> void:
 
 func _on_menu_pressed() -> void:
 	get_tree().change_scene_to_file("res://scenes/menu.tscn")
+
+
+func _process(delta: float) -> void:
+	# If there are ricoshooters available to be placed, 
+	# spawn one on the mouse location and make sure it follows the mouse location
+	if num_ricoshooters > 0:
+		preview_ricoshooter.visible = true
+		preview_ricoshooter.position = get_global_mouse_position()
+	else:
+		preview_ricoshooter.visible = false
+
