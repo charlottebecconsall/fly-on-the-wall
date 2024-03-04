@@ -51,6 +51,8 @@ func _unhandled_input(event: InputEvent) -> void:
 
 
 func game_end():
+	if get_tree() == null:
+		return
 	$EndScreen.show()
 	var flies_got = num_flies - get_tree().get_node_count_in_group("Flies")
 	var end_text = "You got %d flies!" % flies_got

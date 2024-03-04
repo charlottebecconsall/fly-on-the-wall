@@ -8,6 +8,8 @@ signal bullet_left
 var can_shoot = true
 var gun_rotation_speed = 0.005
 
+var bullet_points: PackedVector2Array
+
 # Called when the node enters the scene tree for the first time.
 func _ready() -> void:
 	pass
@@ -31,10 +33,13 @@ func update_preview_line():
 	preview_line.clear_points()
 	preview_line.add_point(Vector2(0,0))
 	
+	bullet_points.clear()
+	
 	for i in 100:
 		preview_ray.force_raycast_update()
 		if preview_ray.is_colliding():
 			var point = preview_ray.get_collision_point()
+			bullet_points.append(point)
 			var norm = preview_ray.get_collision_normal()
 			preview_line.add_point(to_local(point))
 			var new_dir = preview_ray.global_transform.x.reflect(norm.orthogonal())
@@ -42,6 +47,7 @@ func update_preview_line():
 			preview_ray.global_rotation = new_dir.angle()
 		else:
 			preview_line.add_point(to_local(preview_ray.to_global(preview_ray.target_position)))
+			bullet_points.append(preview_ray.to_global(preview_ray.target_position))
 			break
 
 
@@ -50,8 +56,9 @@ func shoot():
 		return
 	$Gunshot.play()
 	var bullet = preload("res://scenes/bullet.tscn").instantiate() as Node2D
+	add_sibling(bullet)
 	bullet.global_position = global_position
 	bullet.global_rotation = global_rotation
 	bullet.tree_exited.connect(bullet_left.emit)
-	add_sibling(bullet)
+	bullet.bullet_points = bullet_points
 	can_shoot = false
